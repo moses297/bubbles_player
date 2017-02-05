@@ -1,0 +1,12 @@
+body{font-family:sans-serif;font-style:normal;font-size:13px;background-color:white;color:black;margin:0px;}
+a.bublink:link {font-weight:bold;text-decoration:none;color:purple;} 
+a.bublink:visited {font-weight:bold;text-decoration:none;color: purple;} 
+a.bublink:hover {color:red;} 
+h1{display:inline;color:black;font-size:22px;}
+h2{display:inline;color:black;font-size:18px;}
+.adstd{width:180px;vertical-align:top;padding-right:80px;}
+.gametd{background-color:white;}
+a:link {font-weight:bold;text-decoration:none;color:purple;} 
+a:visited {font-weight:bold;text-decoration:none;color:purple;} 
+a:hover {color:red;} 
+.stbuttontext {font-weight:bold;text-decoration:none;color:purple;}
