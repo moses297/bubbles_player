@@ -5,20 +5,22 @@ from platform import system
 
 
 class Webpage(object):
+    _web_driver_browser = None
     _window_handle = None
     _URL = 'file:///' + abspath('Bubble%20Game.html')
+
 
     @classmethod
     def open_url(cls):
         script = "\n    var s = document.createElement('script');\n    s.src = 'fix_swf.js';\n    " \
                  "document.body.appendChild(s);\n "
-        browser = webdriver.Firefox()
+        cls._web_driver_browser = webdriver.Firefox()
         cls._window_handle = cls._get_active_window()
-        browser.get(cls._URL)
-        browser.set_window_size(950, 800)
-        browser.execute_script(script)
-        browser.save_screenshot('test1.png')
-        e = browser.find_element_by_css_selector("object[width='600px'][height='480px']")
+        cls._web_driver_browser.get(cls._URL)
+        cls._web_driver_browser.set_window_size(950, 800)
+        cls._web_driver_browser.execute_script(script)
+        cls._web_driver_browser.save_screenshot('test1.png')
+        e = cls._web_driver_browser.find_element_by_css_selector("object[width='600px'][height='480px']")
         return e.location
 
     @classmethod
@@ -30,6 +32,10 @@ class Webpage(object):
         return not active_window or cls._window_handle == active_window
 
     @classmethod
+    def close(cls):
+        cls._web_driver_browser.quit()
+
+    @classmethod
     def _get_active_window(cls):
         """
             :return: On Windows platform returns the system handle of the active window,
@@ -37,3 +43,4 @@ class Webpage(object):
         """
         if system() == 'Windows':
             return ctypes.windll.user32.GetForegroundWindow()
+

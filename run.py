@@ -3,7 +3,6 @@ from webpage import Webpage
 from image_lib import ODD_TILE_SPACR
 from lib import is_odd
 from time import sleep
-from os.path import abspath
 import pyautogui
 from screenReader import Size, CaptureImage
 
@@ -48,16 +47,16 @@ def main():
         board.accumulate_neighbors()
         x, y = board.get_x_y_for_shot()
         #offset = add_offsets(y, x)
+        #print x,y
+        if x > 900 or y > 900:
+            continue
         try:
-            #print x,y
-            if x > 900 or y > 900:
-                print "exit"
-                exit()
             pyautogui.moveTo(x, y)
             pyautogui.click()
-        except Exception:
-            pass
+        except (WindowsError, ValueError) as e:
+            pass  # Ignoring pyautogui exceptions
         sleep(sleep_time)
+    Webpage.close()
 
 if __name__ == '__main__':
     main()
