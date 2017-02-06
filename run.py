@@ -1,4 +1,4 @@
-from bubbles import bubbles_board
+from bubbles_board import Board
 from webpage import open_url
 from image_lib import ODD_TILE_SPACR
 from lib import is_odd
@@ -28,7 +28,7 @@ def main():
     cap = CaptureImage(screen_size)
     open_url('file:///' + abspath('Bubble%20Game.html'))
     cap.capture()
-    board = bubbles_board.Board((17, 18, 500, 500))
+    board = Board((17, 18, 500, 500))
     offset = 0
     for i in xrange(1000):
         pyautogui.moveTo(316 + 17 + 34, 280 + 389)
