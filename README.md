@@ -8,4 +8,5 @@ Automated bot that plays the "Bubble" flash game
 - pip install opencv-python
 - pip install selenium
 - pip install pillow
-- download geckodriver (needs to be in PATH)
+- Have Firefox (needs to be in PATH)
+- Download geckodriver (needs to be in PATH)
