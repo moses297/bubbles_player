@@ -1,5 +1,5 @@
-import cv2
-import ImageGrab
+from PIL import ImageGrab
+
 
 class Size(object):
     def __init__(self, x, y, w, h):
@@ -28,6 +28,8 @@ class Screen(object):
         pass
         #This should return set of X,Y of found artifacts
 '''
+
+
 class CaptureImage(object):
     def __init__(self, size):
         self.x = size.x
