@@ -216,7 +216,6 @@ class Board(object):
 
     def remove_blocked_bubbles(self, reachable_bubbles):
         regular_shot = []
-        wall_shot = []
         for bubble in reachable_bubbles:
             if not self.blocked_by_obstacle(bubble):
                 regular_shot.append(bubble)
@@ -224,13 +223,13 @@ class Board(object):
                 regular_shot.append(bubble)
             elif not self.blocked_via_right_wall_shot(bubble):
                 regular_shot.append(bubble)
-        return regular_shot, wall_shot
+        return regular_shot
 
-    def get_x_y_for_shot(self):
+    def get_x_y_for_shot(self, board_x, board_y):
         current_color = self.get_current_color()
         reachable_bubbles = self.get_all_tiles_next_to_empty()
         reachable_bubbles = self.get_only_my_colors(reachable_bubbles, current_color)
-        reachable_bubbles, reachable_wall_shot = self.remove_blocked_bubbles(reachable_bubbles)
+        reachable_bubbles = self.remove_blocked_bubbles(reachable_bubbles)
         highest_neighbor = [Tile('empty', 0), self.last_shot]
         for array in reachable_bubbles:
             if highest_neighbor[0].neighbors_count == 0:
@@ -239,12 +238,10 @@ class Board(object):
             if array[0].neighbors_count > highest_neighbor[0].neighbors_count:
                 highest_neighbor = array
         self.last_shot = highest_neighbor[1]
-        if highest_neighbor in reachable_wall_shot:
-            pass
         if highest_neighbor[0].shoot_location:
-            return 316 + highest_neighbor[0].shoot_location.x, 280 + highest_neighbor[0].shoot_location.y
+            return board_x + highest_neighbor[0].shoot_location.x, board_y + highest_neighbor[0].shoot_location.y
         offset = 12 if is_odd(highest_neighbor[1][0]) else 0
-        return 316 + 17 + 24*highest_neighbor[1][1] + offset, 280 + highest_neighbor[1][0]*24 + 20
+        return board_x + 17 + 24*highest_neighbor[1][1] + offset, board_y + highest_neighbor[1][0]*24 + 20
 
     def random_shot(self):
         return (500, 500)
