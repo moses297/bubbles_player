@@ -7,7 +7,8 @@ GAME_TILES = {
     'yellow': cv2.imread("colors/yellow.png"),
     'green': cv2.imread("colors/green.png"),
     'cyan': cv2.imread("colors/cyan.png"),
-    'empty': cv2.imread("colors/empty.png")
+    'empty': cv2.imread("colors/empty.png"),
+    'end': cv2.imread("colors/end.png")
 }
 
 
@@ -33,7 +34,7 @@ class HexagonHandler(object):
         for y1, x1 in self.hexagon_neighbors(y, x):
             if x1 < 0 or y1 < 0 or x1 >= 16 or y1 >= 17:
                 continue
-            #print "{} {} {}".format(y1, x1, board[y1][x1].bubble_data)
+            print "{} {}".format(y1, x1)
             if tile.bubble_data == board[y1][x1].bubble_data and (y1, x1) not in set_of:
                 list_of_neigh.add((y1, x1))
         return list_of_neigh
