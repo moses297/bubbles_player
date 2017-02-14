@@ -34,7 +34,7 @@ def restart_game(game_number, x, y):
     if game_number == 1:
         pyautogui.typewrite("MegaMan_{}".format(game_number))
     else:
-        pyautogui.press('del')
+        pyautogui.press('backspace')
         pyautogui.typewrite("{}".format(game_number))
     # Press OK
     click_with_sleep(x + 272, y + 240)
