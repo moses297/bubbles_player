@@ -21,8 +21,8 @@ def main():
     sleep_time = 0.7
     object_location = Webpage.open_url()
     print object_location
-    game_upper_x = object_location['x'] + 8
-    game_upper_y = object_location['y'] - 448
+    game_upper_x = int(object_location['x'])
+    game_upper_y = int(object_location['y']) - 448
     make_fullscreen()
 
     screen_size = Size(game_upper_x, game_upper_y, 600, 480)
