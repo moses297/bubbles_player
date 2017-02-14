@@ -8,12 +8,13 @@ class Webpage(object):
     _web_driver_browser = None
     _window_handle = None
     _URL = 'file:///' + abspath('Bubble%20Game.html')
-
+    _profile = webdriver.FirefoxProfile()
+    _profile.set_preference('browser.fullscreen.autohide', True)
+    _profile.set_preference('browser.fullscreen.animate', False)
 
     @classmethod
     def open_url(cls):
-        cls._web_driver_browser = webdriver.Firefox()
-        cls._web_driver_browser.set_window_position(0, 0)
+        cls._web_driver_browser = webdriver.Firefox(cls._profile)
         cls._window_handle = cls._get_active_window()
         cls._web_driver_browser.get(cls._URL)
         cls._web_driver_browser.set_window_size(800, 800)

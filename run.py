@@ -13,19 +13,23 @@ def ensure_game_is_active(sleep_time):
     while not Webpage.is_active():
         sleep(sleep_time)
 
+def make_fullscreen():
+    pyautogui.keyDown('enter')
+    pyautogui.keyDown('f11')
 
 def main():
     sleep_time = 0.7
+    object_location = Webpage.open_url()
+    print object_location
+    game_upper_x = object_location['x'] + 8
+    game_upper_y = object_location['y'] - 448
+    make_fullscreen()
 
-    a = Webpage.open_url()
-    print a
-    pyautogui.moveTo(a['x'] + 7, a['y'] - 364)
-    game_upper_x = a['x'] + 8
-    game_upper_y = a['y'] - 363
     screen_size = Size(game_upper_x, game_upper_y, 600, 480)
     cap = CaptureImage(screen_size)
     cap.capture()
     board = Board((17, 18, 500, 500))
+
     for i in xrange(1000):
         ensure_game_is_active(sleep_time)
         pyautogui.moveTo(game_upper_x + 60, game_upper_y + 390)
